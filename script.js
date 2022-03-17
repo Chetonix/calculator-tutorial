@@ -38,9 +38,9 @@ function useOperator(operator) {
     if(!firstValue) {
         firstValue = currentValue;
     } else {
-        console.log(firstValue, operatorValue , currentValue);
+        // console.log(firstValue, operatorValue , currentValue);
         const calculation = calculate[operatorValue](firstValue, currentValue);
-        console.log("calculation", calculation); 
+        // console.log("calculation", calculation); 
         calculatorDisplay.textContent = calculation;
         firstValue = calculation;
     }
@@ -74,7 +74,7 @@ inputBtns.forEach((inputBtn)=> {
 function resetAll() {
     calculatorDisplay.textContent = "0";
     firstValue = 0;
-    opeartorValue = "";
+    operatorValue = "";
     awaitingNextValue = false;
 }
 

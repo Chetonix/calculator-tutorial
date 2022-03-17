@@ -2,6 +2,14 @@ const calculatorDisplay = document.querySelector('h1');
 const inputBtns = document.querySelectorAll("button");
 const clearBtn = document.getElementById("clear-btn");
 
+const calculate = {
+    "/": (firstNumber, secondNumber) => firstNumber / secondNumber,
+    "*": (firstNumber, secondNumber) => firstNumber * secondNumber,
+    "+": (firstNumber, secondNumber) => firstNumber + secondNumber,
+    "-": (firstNumber, secondNumber) => firstNumber - secondNumber,
+    "=": (firstNumber, secondNumber) => secondNumber,
+}
+
 let firstValue = 0;
 let operatorValue = "";
 let awaitingNextValue = false; 
@@ -50,24 +58,9 @@ function useOperator(operator) {
 
 }
 
-const calculate = {
-    "/": (firstNumber, secondNumber) => firstNumber / secondNumber,
-    "*": (firstNumber, secondNumber) => firstNumber * secondNumber,
-    "+": (firstNumber, secondNumber) => firstNumber + secondNumber,
-    "-": (firstNumber, secondNumber) => firstNumber - secondNumber,
-    "=": (firstNumber, secondNumber) => secondNumber,
-}
 
-inputBtns.forEach((inputBtn)=> {
-    if(inputBtn.classList.length === 0) {
-        inputBtn.addEventListener("click", () => sendNumberValue(inputBtn.value));
-    } else if (inputBtn.classList.contains('operator')) {
-        inputBtn.addEventListener("click", () => useOperator(inputBtn.value));
 
-    } else if (inputBtn.classList.contains('decimal')) {
-        inputBtn.addEventListener("click", addDecimal);
-    }
-});
+
 
 // Reset Display, all values
 
@@ -78,5 +71,16 @@ function resetAll() {
     awaitingNextValue = false;
 }
 
+//Event Listerners
+inputBtns.forEach((inputBtn)=> {
+    if(inputBtn.classList.length === 0) {
+        inputBtn.addEventListener("click", () => sendNumberValue(inputBtn.value));
+    } else if (inputBtn.classList.contains('operator')) {
+        inputBtn.addEventListener("click", () => useOperator(inputBtn.value));
+
+    } else if (inputBtn.classList.contains('decimal')) {
+        inputBtn.addEventListener("click", addDecimal);
+    }
+});
 //Event listener for clear
 clearBtn.addEventListener("click", resetAll);
